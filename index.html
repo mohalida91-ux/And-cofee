@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>& Coffee — Specialty Coffee & Café in F-7/3, Islamabad</title>
+    <meta name="description" content="Visit & Coffee in F-7/3, Islamabad for quality coffee, thoughtful food, a relaxed atmosphere, dine-in and takeaway. Rated 4.7/5 by 185 guests. Open daily until 11 PM.">
+    <meta name="keywords" content="& Coffee, cafe Islamabad, F-7 cafe, specialty coffee Pakistan, best coffee Islamabad, breakfast F-7, dine-in takeout cafe">
+    
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="& Coffee — Specialty Coffee & Café in F-7/3, Islamabad">
+    <meta property="og:description" content="Quality coffee, thoughtful food, and unhurried moments in F-7/3, Islamabad. Open daily until 11 PM.">
+    <meta property="og:type" content="restaurant.restaurant">
+    <meta property="og:url" content="https://andcoffee.pk">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&q=80">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cafe: {
+                            bg: '#F6F1E8',
+                            cream: '#FFFDF8',
+                            espresso: '#211A16',
+                            brown: '#38271E',
+                            mutedBrown: '#735746',
+                            caramel: '#B98252',
+                            beige: '#D9CCBA',
+                            taupe: '#E8DED0',
+                            textMuted: '#776D65'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'Georgia', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        body {
+            background-color: #F6F1E8;
+            color: #211A16;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
+        .glass-nav {
+            background: rgba(246, 241, 232, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .hero-overlay {
+            background: linear-gradient(180deg, rgba(33,26,22,0.4) 0%, rgba(33,26,22,0.7) 100%);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(16px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F6F1E8;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #B98252;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-[#B98252] selection:text-white">
+
+    <!-- Sticky Header -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4 px-6 md:px-12 border-b border-transparent">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-2 group">
+                <span class="text-2xl md:text-3xl font-serif font-bold tracking-tight text-cafe-espresso group-hover:text-cafe-caramel transition-colors">
+                    & <span class="font-normal italic">Coffee</span>
+                </span>
+                <span class="hidden sm:inline-block text-[10px] tracking-widest uppercase bg-cafe-caramel/20 text-cafe-caramel px-2 py-0.5 rounded-full font-semibold">F-7/3 Islamabad</span>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-cafe-espresso">
+                <a href="#home" class="hover:text-cafe-caramel transition-colors">Home</a>
+                <a href="#experience" class="hover:text-cafe-caramel transition-colors">Experience</a>
+                <a href="#menu" class="hover:text-cafe-caramel transition-colors">Menu</a>
+                <a href="#coffee-story" class="hover:text-cafe-caramel transition-colors">Our Craft</a>
+                <a href="#gallery" class="hover:text-cafe-caramel transition-colors">Atmosphere</a>
+                <a href="#location" class="hover:text-cafe-caramel transition-colors">Location</a>
+            </nav>
+
+            <!-- Right CTA & Mobile Toggle -->
+            <div class="flex items-center gap-4">
+                <button onclick="openReservationModal()" class="hidden sm:inline-flex items-center justify-center bg-cafe-espresso text-cafe-cream px-5 py-2.5 rounded-full text-sm font-medium hover:bg-cafe-caramel transition-all shadow-sm hover:shadow">
+                    Reserve a Table
+                </button>
+                <button id="mobile-menu-btn" aria-label="Toggle menu" class="md:hidden text-cafe-espresso p-2 focus:outline-none">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div id="mobile-menu" class="hidden absolute top-full left-0 w-full bg-cafe-cream/95 backdrop-blur-xl border-b border-cafe-taupe shadow-xl py-6 px-8 flex flex-col gap-4 md:hidden">
+            <a href="#home" class="mobile-nav-link text-lg font-serif text-cafe-espresso">Home</a>
+            <a href="#experience" class="mobile-nav-link text-lg font-serif text-cafe-espresso">Experience</a>
+            <a href="#menu" class="mobile-nav-link text-lg font-serif text-cafe-espresso">Menu</a>
+            <a href="#coffee-story" class="mobile-nav-link text-lg font-serif text-cafe-espresso">Our Craft</a>
+            <a href="#gallery" class="mobile-nav-link text-lg font-serif text-cafe-espresso">Atmosphere</a>
+            <a href="#location" class="mobile-nav-link text-lg font-serif text-cafe-espresso">Location</a>
+            <div class="pt-4 border-t border-cafe-taupe/40 flex flex-col gap-3">
+                <button onclick="openReservationModal(); toggleMobileMenu();" class="w-full bg-cafe-espresso text-cafe-cream py-3 rounded-full text-center font-medium">
+                    Reserve a Table
+                </button>
+                <a href="tel:+923251888768" class="w-full border border-cafe-caramel text-cafe-caramel py-3 rounded-full text-center font-medium flex items-center justify-center gap-2">
+                    <i data-lucide="phone" class="w-4 h-4"></i> +92 325 1888768
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-[92vh] flex items-center justify-center pt-24 pb-16 px-6 overflow-hidden">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1920&q=85" alt="& Coffee Islamabad Interior" class="w-full h-full object-cover scale-105 animate-fade-in">
+            <div class="absolute inset-0 hero-overlay"></div>
+        </div>
+
+        <div class="relative z-10 max-w-5xl mx-auto text-center text-cafe-cream flex flex-col items-center">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs md:text-sm tracking-widest uppercase mb-6 animate-fade-in font-medium">
+                <i data-lucide="map-pin" class="w-3.5 h-3.5 text-cafe-caramel"></i> F-7/3 • Islamabad
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-serif font-normal tracking-tight mb-6 leading-[1.1] animate-fade-in">
+                Good Coffee.<br /><span class="italic font-light">Slow Moments.</span>
+            </h1>
+
+            <p class="max-w-xl text-lg md:text-xl text-cafe-taupe font-light mb-10 leading-relaxed animate-fade-in">
+                Welcome to & Coffee — Islamabad's premier sanctuary for exceptional specialty coffee, thoughtful all-day dining, and unhurried hospitality in F-7.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto animate-fade-in">
+                <a href="#menu" class="w-full sm:w-auto bg-cafe-caramel hover:bg-[#a67243] text-cafe-espresso font-semibold px-8 py-4 rounded-full transition-all shadow-lg hover:scale-105 text-center">
+                    Explore the Menu
+                </a>
+                <button onclick="openReservationModal()" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/30 text-cafe-cream font-medium px-8 py-4 rounded-full transition-all text-center">
+                    Reserve a Table
+                </button>
+            </div>
+        </div>
+
+        <!-- Lower Information Strip on Hero -->
+        <div class="absolute bottom-0 left-0 right-0 z-20 hidden md:flex items-center justify-center gap-12 bg-cafe-espresso/90 backdrop-blur-md border-t border-white/10 py-4 px-6 text-xs text-cafe-taupe uppercase tracking-widest">
+            <div class="flex items-center gap-2">
+                <i data-lucide="map-pin" class="w-4 h-4 text-cafe-caramel"></i>
+                <span>Unit 2, Street 4, F-7/3, Islamabad</span>
+            </div>
+            <div class="w-1 h-1 rounded-full bg-cafe-taupe/40"></div>
+            <div class="flex items-center gap-2">
+                <i data-lucide="clock" class="w-4 h-4 text-cafe-caramel"></i>
+                <span>Open Daily · Closes 11 PM</span>
+            </div>
+            <div class="w-1 h-1 rounded-full bg-cafe-taupe/40"></div>
+            <div class="flex items-center gap-2">
+                <i data-lucide="utensils" class="w-4 h-4 text-cafe-caramel"></i>
+                <span>Dine-in & Takeout Available</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Business Trust Strip -->
+    <section class="bg-cafe-brown text-cafe-cream py-6 px-6 border-b border-cafe-espresso">
+        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-center divide-y md:divide-y-0 md:divide-x divide-cafe-taupe/20">
+            <div class="flex flex-col items-center justify-center pt-2 md:pt-0">
+                <div class="flex items-center gap-1 text-cafe-caramel text-xl font-serif font-bold">
+                    <span>4.7</span>
+                    <i data-lucide="star" class="w-5 h-5 fill-cafe-caramel"></i>
+                </div>
+                <span class="text-xs text-cafe-taupe uppercase tracking-wider mt-1">185 Verified Reviews</span>
+            </div>
+            <div class="flex flex-col items-center justify-center pt-4 md:pt-0">
+                <span class="text-lg font-serif font-semibold text-cafe-cream">Rs 1,000–5,000</span>
+                <span class="text-xs text-cafe-taupe uppercase tracking-wider mt-1">Average Price Per Person</span>
+            </div>
+            <div class="flex flex-col items-center justify-center pt-4 md:pt-0">
+                <span class="text-lg font-serif font-semibold text-cafe-cream">Open Daily</span>
+                <span class="text-xs text-cafe-taupe uppercase tracking-wider mt-1">Closes 11 PM</span>
+            </div>
+            <div class="flex flex-col items-center justify-center pt-4 md:pt-0">
+                <span class="text-lg font-serif font-semibold text-cafe-cream">Dine-in & Takeout</span>
+                <span class="text-xs text-cafe-taupe uppercase tracking-wider mt-1">F-7/3, Islamabad</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Introduction -->
+    <section class="py-24 px-6 md:px-12 max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+            <div class="md:col-span-5 space-y-4">
+                <span class="text-xs font-semibold uppercase tracking-widest text-cafe-caramel">The & Coffee Experience</span>
+                <h2 class="text-4xl md:text-5xl font-serif text-cafe-espresso leading-tight">
+                    Made for mornings that linger and evenings worth remembering.
+                </h2>
+            </div>
+            <div class="md:col-span-7 space-y-6 text-cafe-textMuted text-lg font-light leading-relaxed">
+                <p>
+                    Nestled in the heart of Islamabad's vibrant F-7 sector, & Coffee was founded on a simple belief: that a great café is more than just a place to grab a drink—it's a communal living room, a quiet workspace, and a haven for meaningful conversation.
+                </p>
+                <p>
+                    From ethically sourced specialty beans meticulously roasted and brewed by expert baristas, to comforting artisanal dishes prepared fresh daily, every detail at & Coffee is curated to elevate your everyday routine into an extraordinary experience.
+                </p>
+                <div class="pt-4 flex items-center gap-6">
+                    <div>
+                        <span class="block text-3xl font-serif font-bold text-cafe-espresso">185+</span>
+                        <span class="text-xs uppercase tracking-wider text-cafe-textMuted">Happy Guests</span>
+                    </div>
+                    <div class="w-px h-12 bg-cafe-taupe"></div>
+                    <div>
+                        <span class="block text-3xl font-serif font-bold text-cafe-espresso">4.7★</span>
+                        <span class="text-xs uppercase tracking-wider text-cafe-textMuted">Guest Rating</span>
+                    </div>
+                    <div class="w-px h-12 bg-cafe-taupe"></div>
+                    <div>
+                        <span class="block text-3xl font-serif font-bold text-cafe-espresso">F-7/3</span>
+                        <span class="text-xs uppercase tracking-wider text-cafe-textMuted">Islamabad Location</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="py-20 bg-cafe-taupe/20 px-6 md:px-12 border-y border-cafe-taupe/30">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-xs font-semibold uppercase tracking-widest text-cafe-caramel">What We Offer</span>
+                <h2 class="text-4xl md:text-5xl font-serif text-cafe-espresso mt-2">More than coffee.</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-cafe-cream rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-cafe-taupe/40 group">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80" alt="Specialty Coffee" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-8 space-y-3">
+                        <h3 class="text-2xl font-serif text-cafe-espresso">Specialty Coffee</h3>
+                        <p class="text-cafe-textMuted text-sm leading-relaxed">
+                            Thoughtfully prepared coffee with carefully selected beans, precise extraction, and refined preparation by our skilled baristas.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-cafe-cream rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-cafe-taupe/40 group">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80" alt="All-Day Food" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-8 space-y-3">
+                        <h3 class="text-2xl font-serif text-cafe-espresso">All-Day Food</h3>
+                        <p class="text-cafe-textMuted text-sm leading-relaxed">
+                            Comforting café dishes made with quality ingredients, artisanal breads, and contemporary presentation for breakfast, lunch, and dinner.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-cafe-cream rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-cafe-taupe/40 group">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=800&q=80" alt="A Place to Gather" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="p-8 space-y-3">
+                        <h3 class="text-2xl font-serif text-cafe-espresso">A Place to Gather</h3>
+                        <p class="text-cafe-textMuted text-sm leading-relaxed">
+                            A welcoming, aesthetically refined environment designed for meetings, quiet work sessions, and relaxed afternoons in F-7.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Menu Section -->
+    <section id="menu" class="py-24 px-6 md:px-12 max-w-7xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+            <span class="text-xs font-semibold uppercase tracking-widest text-cafe-caramel">Curated Offerings</span>
+            <h2 class="text-4xl md:text-5xl font-serif text-cafe-espresso mt-2">The & Coffee Menu</h2>
+            <p class="text-cafe-textMuted text-sm mt-3">Explore our signature beverages, comforting breakfasts, hearty mains, and artisanal desserts.</p>
+        </div>
+
+        <!-- Category Filter Buttons -->
+        <div class="flex flex-wrap items-center justify-center gap-2 md:gap-4 mb-12" id="menu-categories">
+            <button onclick="filterMenu('all')" class="menu-cat-btn active px-6 py-2.5 rounded-full text-sm font-medium transition-all bg-cafe-espresso text-cafe-cream">All Items</button>
+            <button onclick="filterMenu('coffee')" class="menu-cat-btn px-6 py-2.5 rounded-full text-sm font-medium transition-all bg-cafe-taupe/30 text-cafe-espresso hover:bg-cafe-taupe/50">Coffee</button>
+            <button onclick="filterMenu('breakfast')" class="menu-cat-btn px-6 py-2.5 rounded-full text-sm font-medium transition-all bg-cafe-taupe/30 text-cafe-espresso hover:bg-cafe-taupe/50">Breakfast</button>
+            <button onclick="filterMenu('mains')" class="menu-cat-btn px-6 py-2.5 rounded-full text-sm font-medium transition-all bg-cafe-taupe/30 text-cafe-espresso hover:bg-cafe-taupe/50">Mains</button>
+            <button onclick="filterMenu('desserts')" class="menu-cat-btn px-6 py-2.5 rounded-full text-sm font-medium transition-all bg-cafe-taupe/30 text-cafe-espresso hover:bg-cafe-taupe/50">Desserts</button>
+            <button onclick="filterMenu('cold')" class="menu-cat-btn px-6 py-2.5 rounded-full text-sm font-medium transition-all bg-cafe-taupe/30 text-cafe-espresso hover:bg-cafe-taupe/50">Cold Drinks</button>
+        </div>
+
+        <!-- Menu Grid -->
+        <div id="menu-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Items injected dynamically via JavaScript -->
+        </div>
+
+        <div class="text-center mt-12">
+            <button onclick="openReservationModal()" class="inline-flex items-center gap-2 border border-cafe-espresso text-cafe-espresso px-8 py-3.5 rounded-full font-medium hover:bg-cafe-espresso hover:text-cafe-cream transition-all">
+                Book a Table to Experience
+            </button>
+        </div>
+    </section>
+
+    <!-- Signature Dish Feature -->
+    <section class="py-20 bg-cafe-brown text-cafe-cream px-6 md:px-12 my-12 relative overflow-hidden">
+        <div class="absolute -right-20 -bottom-20 opacity-5 font-serif text-[280px] pointer-events-none select-none">
+            &
+        </div>
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-7 rounded-2xl overflow-hidden shadow-2xl">
+                <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1200&q=85" alt="Charred Chicken Brioche" class="w-full h-[400px] lg:h-[500px] object-cover">
+            </div>
+            <div class="lg:col-span-5 space-y-6">
+                <span class="text-xs font-semibold uppercase tracking-widest text-cafe-caramel">Chef's Special Recommendation</span>
+                <h2 class="text-4xl md:text-5xl font-serif text-cafe-cream leading-tight">
+                    Charred Chicken Brioche
+                </h2>
+                <p class="text-cafe-taupe text-base leading-relaxed font-light">
+                    Juicy grilled chicken thigh infused with smoky herbs, layered with crisp butter lettuce, creamy truffle aioli, and sun-dried tomato relish inside a toasted artisanal brioche bun. Served with house-seasoned potato wedges.
+                </p>
+                <div class="flex items-center justify-between pt-4 border-t border-cafe-taupe/20">
+                    <span class="text-2xl font-serif text-cafe-caramel font-semibold">Rs 1,850</span>
+                    <button onclick="openReservationModal()" class="bg-cafe-caramel hover:bg-[#a67243] text-cafe-espresso font-semibold px-6 py-3 rounded-full transition-all text-sm">
+                        Order for Dine-in
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coffee Story Section -->
+    <section id="coffee-story" class="py-24 px-6 md:px-12 max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-6 space-y-6">
+                <span class="text-xs font-semibold uppercase tracking-widest text-cafe-caramel">Our Craft & Philosophy</span>
+                <h2 class="text-4xl md:text-5xl font-serif text-cafe-espresso leading-tight">
+                    Take your coffee seriously.<br /><span class="italic font-light">Never take yourself too seriously.</span>
+                </h2>
+                <p class="text-cafe-textMuted text-lg leading-relaxed font-light">
+                    Every cup at & Coffee begins with uncompromising dedication. We source exceptional specialty Arabica beans, calibrate our grinders daily, and ensure precise water temperature and pressure to extract the absolute finest notes in every pour.
+                </p>
+                <p class="text-cafe-textMuted text-sm leading-relaxed">
+                    Whether you enjoy a silky cortado during a morning meeting or an iced citrus cold brew on a warm Islamabad afternoon, our baristas craft each beverage with precision, warmth, and hospitality.
+                </p>
+                <div class="pt-4">
+                    <button onclick="openReservationModal()" class="bg-cafe-espresso text-cafe-cream px-8 py-3.5 rounded-full font-medium text-sm hover:bg-cafe-caramel transition-all">
+                        Discover Our Coffee
+                    </button>
+                </div>
+            </div>
+            <div class="lg:col-span-6 grid grid-cols-2 gap-4">
+                <div class="space-y-4">
+                    <img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=600&q=80" alt="Latte Art" class="rounded-2xl shadow-md w-full h-64 object-cover">
+                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=600&q=80" alt="Coffee Pour" class="rounded-2xl shadow-md w-full h-48 object-cover">
+                </div>
+                <div class="space-y-4 pt-8">
+                    <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80" alt="Espresso Machine" class="rounded-2xl shadow-md w-full h-48 object-cover">
+                    <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=600&q=80" alt="Coffee beans" class="rounded-2xl shadow-md w-full h-64 object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Atmosphere Gallery -->
+    <section id="gallery" class="py-24 bg-cafe-taupe/15 px-6 md:px-12 border-y border-cafe-taupe/30">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-xs font-semibold uppercase tracking-widest text-cafe-caramel">Visual Journey</span>
+                <h2 class="text-4xl md:text-5xl font-serif text-cafe-espresso mt-2">Come for the coffee.<br /><span class="italic font-light">Stay for the atmosphere.</span></h2>
+            </div>
+
+            <!-- Masonry Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <div class="space-y-6">
+                    <div class="overflow-hidden rounded-2xl shadow-sm group">
+                        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80" alt="Cafe Interior" class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="overflow-hidden rounded-2xl shadow-sm group">
+                        <img src="https://images.unsplash.com/photo-1507133750040-4a8f57021571?auto=format&fit=crop&w=800&q=80" alt="Pastries" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                </div>
+                <div class="space-y-6 pt-0 md:pt-8">
+                    <div class="overflow-hidden rounded-2xl shadow-sm group">
+                        <img src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?auto=format&fit=crop&w=800&q=80" alt="Cafe Seating" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="overflow-hidden rounded-2xl shadow-sm group">
+                        <img src="https://images.unsplash.com/photo-1497636577773-f1231844b336?auto=format&fit=crop&w=800&q=80" alt="Books and Coffee" class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                </div>
+                <div class="space-y-6 sm:col-span-2 md:col-span-1">
+                    <div class="overflow-hidden rounded-2xl shadow-sm group">
+                        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80" alt="Coffee Cup Detail" class="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="overflow-hidden rounded-2xl shadow-sm group">
+                        <img src="https://images.unsplash.com/photo-1572116469696-31de0f17cc34?auto=format&fit=crop&w=800&q=80" alt="Evening Ambience" class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section class="py-24 px-6 md:px-12 max-w-7xl mx-auto">
+        <div class="bg-cafe-cream rounded-3xl p-8 md:p-16 border border-cafe-taupe/40 shadow-sm flex flex-col md:flex-row items-center justify-between gap-12">
+            <div class="space-y-4 max-w-md">
+                <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cafe-caramel/10 text-cafe-caramel text-xs font-semibold uppercase tracking-wider">
+                    Customer Reputation
+                </div>
+                <h2 class="text-4xl font-serif text-cafe-espresso">Loved by Islamabad.</h2>
+                <p class="text-cafe-textMuted text-sm leading-relaxed">
+                    With an exceptional 4.7 out of 5 rating across 185 verified reviews, & Coffee is recognized throughout F-7 for our warm hospitality, consistent quality, and inviting atmosphere.
+                </p>
+                <div class="pt-2">
+                    <a href="https://maps.google.com/?q=Unit+2,+Street+4,+F-7/3,+Islamabad" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-cafe-espresso font-semibold hover:text-cafe-caramel transition-colors text-sm">
+                        View All Reviews on Google Maps <i data-lucide="external-link" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="flex flex-col items-center justify-center bg-cafe-bg p-8 rounded-2xl border border-cafe-taupe/40 min-w-[280px]">
+                <div class="flex items-center gap-2 text-4xl md:text-5xl font-serif font-bold text-cafe-espresso mb-2">
+                    <span>4.7</span>
+                    <div class="flex text-cafe-caramel">
+                        <i data-lucide="star" class="w-6 h-6 fill-cafe-caramel"></i>
+                        <i data-lucide="star" class="w-6 h-6 fill-cafe-caramel"></i>
+                        <i data-lucide="star" class="w-6 h-6 fill-cafe-caramel"></i>
+                        <i data-lucide="star" class="w-6 h-6 fill-cafe-caramel"></i>
+                        <i data-lucide="star" class="w-6 h-6 fill-cafe-caramel"></i>
+                    </div>
+                </div>
+                <span class="text-xs uppercase tracking-widest text-cafe-textMuted font-semibold">Based on 185 reviews</span>
+                <span class="mt-4 text-xs text-cafe-caramel bg-cafe-caramel/10 px-3 py-1 rounded-full font-medium">★ Exceptional Rating</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section id="location" class="py-24 bg-cafe-taupe/20 px-6 md:px-12 border-t border-cafe-taupe/30">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-6 space-y-6">
+                <span class="text-xs font-semibold uppercase tracking-widest text-cafe-caramel">Visit & Coffee</span>
+                <h2 class="text-4xl md:text-5xl font-serif text-cafe-espresso">Find Us in F-7/3</h2>
+                <p class="text-cafe-textMuted text-base leading-relaxed font-light">
+                    Conveniently located in Islamabad's peaceful F-7 sector, & Coffee offers a tranquil escape for dine-in guests and speedy pickup for takeaway orders.
+                </p>
+
+                <div class="space-y-4 pt-2">
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-full bg-cafe-caramel/10 flex items-center justify-center text-cafe-caramel shrink-0 mt-1">
+                            <i data-lucide="map-pin" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-serif font-semibold text-cafe-espresso text-lg">Address</h4>
+                            <p class="text-cafe-textMuted text-sm">Unit 2, Street 4, F-7/3, F-7, Islamabad, 44210, Pakistan</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-full bg-cafe-caramel/10 flex items-center justify-center text-cafe-caramel shrink-0 mt-1">
+                            <i data-lucide="clock" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-serif font-semibold text-cafe-espresso text-lg">Hours</h4>
+                            <p class="text-cafe-textMuted text-sm">Open Daily · Closes 11 PM</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-4">
+                        <div class="w-10 h-10 rounded-full bg-cafe-caramel/10 flex items-center justify-center text-cafe-caramel shrink-0 mt-1">
+                            <i data-lucide="phone" class="w-5 h-5"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-serif font-semibold text-cafe-espresso text-lg">Phone</h4>
+                            <a href="tel:+923251888768" class="text-cafe-caramel hover:underline text-sm font-semibold">+92 325 1888768</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-4 pt-4">
+                    <a href="https://maps.google.com/?q=Unit+2,+Street+4,+F-7/3,+Islamabad" target="_blank" rel="noopener noreferrer" class="bg-cafe-espresso text-cafe-cream px-6 py-3.5 rounded-full font-medium text-sm hover:bg-cafe-caramel transition-all inline-flex items-center gap-2">
+                        <i data-lucide="navigation" class="w-4 h-4"></i> Get Directions
+                    </a>
+                    <a href="tel:+923251888768" class="border border-cafe-espresso text-cafe-espresso px-6 py-3.5 rounded-full font-medium text-sm hover:bg-cafe-espresso hover:text-cafe-cream transition-all inline-flex items-center gap-2">
+                        <i data-lucide="phone" class="w-4 h-4"></i> Call & Coffee
+                    </a>
+                </div>
+            </div>
+
+            <!-- Static Visual Card / Map Alternative -->
+            <div class="lg:col-span-6 bg-cafe-cream rounded-3xl p-8 border border-cafe-taupe/40 shadow-md">
+                <div class="relative h-80 rounded-2xl overflow-hidden bg-cafe-taupe/20 flex flex-col items-center justify-center text-center p-6 border border-cafe-taupe/30">
+                    <div class="absolute inset-0 opacity-20">
+                        <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&w=800&q=80" alt="Islamabad Map Background" class="w-full h-full object-cover">
+                    </div>
+                    <div class="relative z-10 space-y-4">
+                        <div class="w-14 h-14 bg-cafe-espresso text-cafe-cream rounded-full flex items-center justify-center mx-auto shadow-lg">
+                            <i data-lucide="coffee" class="w-6 h-6 text-cafe-caramel"></i>
+                        </div>
+                        <h3 class="text-2xl font-serif text-cafe-espresso">& Coffee, F-7/3</h3>
+                        <p class="text-cafe-textMuted text-xs max-w-xs">Unit 2, Street 4, F-7/3, F-7, Islamabad, 44210, Pakistan</p>
+                        <a href="https://maps.google.com/?q=Unit+2,+Street+4,+F-7/3,+Islamabad" target="_blank" rel="noopener noreferrer" class="inline-block bg-cafe-caramel text-cafe-espresso px-5 py-2.5 rounded-full text-xs font-semibold hover:bg-[#a67243] transition-colors">
+                            Open in Google Maps
+                        </a>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4 mt-6 pt-6 border-t border-cafe-taupe/30">
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="utensils" class="w-5 h-5 text-cafe-caramel"></i>
+                        <div>
+                            <span class="block text-xs uppercase tracking-wider text-cafe-textMuted">Service</span>
+                            <span class="text-sm font-semibold text-cafe-espresso">Dine-in</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="shopping-bag" class="w-5 h-5 text-cafe-caramel"></i>
+                        <div>
+                            <span class="block text-xs uppercase tracking-wider text-cafe-textMuted">Service</span>
+                            <span class="text-sm font-semibold text-cafe-espresso">Takeout</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Takeout CTA Block -->
+    <section class="py-16 px-6 md:px-12 max-w-5xl mx-auto">
+        <div class="bg-cafe-brown rounded-3xl p-8 md:p-12 text-center text-cafe-cream space-y-6 shadow-xl relative overflow-hidden">
+            <div class="absolute -right-10 -top-10 opacity-10 font-serif text-9xl pointer-events-none">
+                ☕
+            </div>
+            <span class="text-xs font-semibold uppercase tracking-widest text-cafe-caramel">On the Move</span>
+            <h2 class="text-3xl md:text-4xl font-serif text-cafe-cream">Good coffee, wherever the day takes you.</h2>
+            <p class="text-cafe-taupe max-w-lg mx-auto text-sm leading-relaxed">
+                Enjoy your favorite specialty brews and fresh pastries on the go. Call ahead or drop by our F-7/3 location for quick takeout service.
+            </p>
+            <div class="pt-2">
+                <a href="tel:+923251888768" class="inline-flex items-center gap-2 bg-cafe-caramel hover:bg-[#a67243] text-cafe-espresso font-semibold px-8 py-4 rounded-full transition-all text-sm shadow-md">
+                    <i data-lucide="phone" class="w-4 h-4"></i> Call +92 325 1888768 for Takeout
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-cafe-espresso text-cafe-cream pt-20 pb-12 px-6 md:px-12 border-t border-cafe-brown">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 pb-16 border-b border-cafe-taupe/20">
+            <!-- Col 1 -->
+            <div class="md:col-span-4 space-y-4">
+                <a href="#" class="text-3xl font-serif font-bold tracking-tight text-cafe-cream">
+                    & <span class="font-normal italic text-cafe-caramel">Coffee</span>
+                </a>
+                <p class="text-cafe-taupe text-sm leading-relaxed font-light">
+                    Islamabad's premier specialty café in F-7/3. Dedicated to exceptional coffee, thoughtful food, and unhurried hospitality.
+                </p>
+                <div class="flex items-center gap-3 pt-2">
+                    <a href="#" aria-label="Instagram" class="w-10 h-10 rounded-full bg-cafe-brown flex items-center justify-center text-cafe-cream hover:bg-cafe-caramel hover:text-cafe-espresso transition-colors">
+                        <i data-lucide="instagram" class="w-4 h-4"></i>
+                    </a>
+                    <a href="#" aria-label="Facebook" class="w-10 h-10 rounded-full bg-cafe-brown flex items-center justify-center text-cafe-cream hover:bg-cafe-caramel hover:text-cafe-espresso transition-colors">
+                        <i data-lucide="facebook" class="w-4 h-4"></i>
+                    </a>
+                    <a href="#" aria-label="TikTok" class="w-10 h-10 rounded-full bg-cafe-brown flex items-center justify-center text-cafe-cream hover:bg-cafe-caramel hover:text-cafe-espresso transition-colors">
+                        <i data-lucide="video" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Col 2 -->
+            <div class="md:col-span-2 space-y-4">
+                <h4 class="font-serif text-lg font-semibold text-cafe-cream">Navigation</h4>
+                <ul class="space-y-2.5 text-sm text-cafe-taupe">
+                    <li><a href="#home" class="hover:text-cafe-caramel transition-colors">Home</a></li>
+                    <li><a href="#experience" class="hover:text-cafe-caramel transition-colors">Experience</a></li>
+                    <li><a href="#menu" class="hover:text-cafe-caramel transition-colors">Menu</a></li>
+                    <li><a href="#coffee-story" class="hover:text-cafe-caramel transition-colors">Our Craft</a></li>
+                    <li><a href="#gallery" class="hover:text-cafe-caramel transition-colors">Atmosphere</a></li>
+                    <li><a href="#location" class="hover:text-cafe-caramel transition-colors">Location</a></li>
+                </ul>
+            </div>
+
+            <!-- Col 3 -->
+            <div class="md:col-span-3 space-y-4">
+                <h4 class="font-serif text-lg font-semibold text-cafe-cream">Visit Us</h4>
+                <p class="text-sm text-cafe-taupe">Unit 2, Street 4, F-7/3, F-7, Islamabad, 44210, Pakistan</p>
+                <p class="text-sm text-cafe-taupe">Phone: <a href="tel:+923251888768" class="text-cafe-caramel hover:underline">+92 325 1888768</a></p>
+                <p class="text-sm text-cafe-taupe">Hours: Open Daily · Closes 11 PM</p>
+            </div>
+
+            <!-- Col 4 -->
+            <div class="md:col-span-3 space-y-4">
+                <h4 class="font-serif text-lg font-semibold text-cafe-cream">Services & Rating</h4>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-cafe-brown text-cafe-taupe text-xs px-3 py-1 rounded-full">Dine-in</span>
+                    <span class="bg-cafe-brown text-cafe-taupe text-xs px-3 py-1 rounded-full">Takeout</span>
+                </div>
+                <div class="pt-2">
+                    <span class="block text-xs uppercase tracking-wider text-cafe-taupe mb-1">Customer Rating</span>
+                    <div class="flex items-center gap-1 text-cafe-caramel font-serif font-bold text-lg">
+                        <span>4.7 / 5</span>
+                        <span class="text-xs text-cafe-taupe font-sans font-normal">(185 Reviews)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-cafe-taupe/60 gap-4">
+            <p>© 2026 & Coffee. All rights reserved.</p>
+            <div class="flex items-center gap-6">
+                <a href="#" class="hover:underline">Privacy Policy</a>
+                <a href="#" class="hover:underline">Terms of Service</a>
+                <a href="#" class="hover:underline">Hostinger Deployment Ready</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Reservation Modal -->
+    <div id="reservation-modal" class="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm hidden items-center justify-center p-4">
+        <div class="bg-cafe-cream rounded-3xl max-w-lg w-full p-8 shadow-2xl relative border border-cafe-taupe/40 animate-fade-in">
+            <button onclick="closeReservationModal()" aria-label="Close modal" class="absolute top-6 right-6 w-10 h-10 rounded-full bg-cafe-bg flex items-center justify-center text-cafe-espresso hover:bg-cafe-taupe/30 transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <div id="reservation-form-container">
+                <div class="space-y-2 mb-6">
+                    <span class="text-xs font-semibold uppercase tracking-widest text-cafe-caramel">& Coffee Reservation</span>
+                    <h3 class="text-3xl font-serif text-cafe-espresso">Reserve Your Table</h3>
+                    <p class="text-cafe-textMuted text-xs">Fill in your details below to request a table reservation at our F-7/3 Islamabad location.</p>
+                </div>
+
+                <form id="res-form" onsubmit="handleReservationSubmit(event)" class="space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-cafe-espresso mb-1">Your Name *</label>
+                            <input type="text" required class="w-full bg-cafe-bg border border-cafe-taupe/50 rounded-xl px-4 py-2.5 text-sm text-cafe-espresso focus:outline-none focus:border-cafe-caramel" placeholder="Ahmad Khan">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-cafe-espresso mb-1">Phone Number *</label>
+                            <input type="tel" required class="w-full bg-cafe-bg border border-cafe-taupe/50 rounded-xl px-4 py-2.5 text-sm text-cafe-espresso focus:outline-none focus:border-cafe-caramel" placeholder="+92 300 1234567">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-cafe-espresso mb-1">Date *</label>
+                            <input type="date" required class="w-full bg-cafe-bg border border-cafe-taupe/50 rounded-xl px-4 py-2.5 text-sm text-cafe-espresso focus:outline-none focus:border-cafe-caramel">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-cafe-espresso mb-1">Time *</label>
+                            <select required class="w-full bg-cafe-bg border border-cafe-taupe/50 rounded-xl px-4 py-2.5 text-sm text-cafe-espresso focus:outline-none focus:border-cafe-caramel">
+                                <option value="">Select Time</option>
+                                <option value="09:00">09:00 AM</option>
+                                <option value="11:00">11:00 AM</option>
+                                <option value="13:00">01:00 PM</option>
+                                <option value="16:00">04:00 PM</option>
+                                <option value="18:00">06:00 PM</option>
+                                <option value="20:00">08:00 PM</option>
+                                <option value="21:30">09:30 PM</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-cafe-espresso mb-1">Number of Guests *</label>
+                        <select required class="w-full bg-cafe-bg border border-cafe-taupe/50 rounded-xl px-4 py-2.5 text-sm text-cafe-espresso focus:outline-none focus:border-cafe-caramel">
+                            <option value="1">1 Person</option>
+                            <option value="2" selected>2 People</option>
+                            <option value="4">4 People</option>
+                            <option value="6">6 People</option>
+                            <option value="8+">8+ People (Large Group)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-cafe-espresso mb-1">Special Requests (Optional)</label>
+                        <textarea rows="2" class="w-full bg-cafe-bg border border-cafe-taupe/50 rounded-xl px-4 py-2.5 text-sm text-cafe-espresso focus:outline-none focus:border-cafe-caramel" placeholder="Corner table, dietary preferences, etc."></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-cafe-espresso hover:bg-cafe-caramel text-cafe-cream font-semibold py-3.5 rounded-full transition-all text-sm mt-2 shadow-md">
+                        Request Reservation
+                    </button>
+                </form>
+            </div>
+
+            <!-- Success State (Hidden by default) -->
+            <div id="reservation-success" class="hidden text-center py-10 space-y-4">
+                <div class="w-16 h-16 bg-emerald-100 text-emerald-700 rounded-full flex items-center justify-center mx-auto text-2xl">
+                    ✓
+                </div>
+                <h3 class="text-3xl font-serif text-cafe-espresso">Reservation Requested!</h3>
+                <p class="text-cafe-textMuted text-sm max-w-sm mx-auto">
+                    Thank you! We have received your table request for & Coffee F-7/3. Our team will contact you shortly to confirm your booking.
+                </p>
+                <button onclick="closeReservationModal()" class="bg-cafe-espresso text-cafe-cream px-8 py-3 rounded-full text-sm font-medium hover:bg-cafe-caramel transition-colors">
+                    Close Window
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Menu Data Array
+        const menuItems = [
+            {
+                id: 1,
+                category: 'coffee',
+                name: 'Brown Butter Cappuccino',
+                description: 'Rich double espresso infused with nutty brown butter and velvety steamed milk.',
+                price: 'Rs 750',
+                tag: 'Signature',
+                image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=600&q=80'
+            },
+            {
+                id: 2,
+                category: 'coffee',
+                name: 'Cardamom Honey Latte',
+                description: 'Fragrant crushed cardamom steeped in organic honey with microfoamed milk and espresso.',
+                price: 'Rs 850',
+                tag: 'Popular',
+                image: 'https://images.unsplash.com/photo-1534778101976-62847782c213?auto=format&fit=crop&w=600&q=80'
+            },
+            {
+                id: 3,
+                category: 'coffee',
+                name: 'Citrus Cold Brew',
+                description: 'Slow-steeped 18-hour cold brew infused with fresh orange zest and sparkling tonic.',
+                price: 'Rs 700',
+                tag: 'Refreshing',
+                image: 'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=600&q=80'
+            },
+            {
+                id: 4,
+                category: 'breakfast',
+                name: 'Saffron French Toast',
+                description: 'Thick brioche soaked in saffron custard, served with whipped mascarpone and wild berries.',
+                price: 'Rs 1,250',
+                tag: 'Bestseller',
+                image: 'https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=600&q=80'
+            },
+            {
+                id: 5,
+                category: 'breakfast',
+                name: 'Avocado Poached Eggs Toast',
+                description: 'Sourdough toast topped with smashed avocado, poached eggs, dukkah spice, and microgreens.',
+                price: 'Rs 1,150',
+                tag: 'Healthy',
+                image: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=600&q=80'
+            },
+            {
+                id: 6,
+                category: 'mains',
+                name: 'Charred Chicken Brioche',
+                description: 'Smoky grilled chicken thigh with truffle aioli, crisp lettuce, and potato wedges.',
+                price: 'Rs 1,850',
+                tag: 'Chef Choice',
+                image: 'https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=600&q=80'
+            },
+            {
+                id: 7,
+                category: 'mains',
+                name: 'Truffle Mushroom Toast',
+                description: 'Sautéed wild forest mushrooms with garlic herb butter, truffle cream, and parmesan on artisan sourdough.',
+                price: 'Rs 1,450',
+                tag: 'Vegetarian',
+                image: 'https://images.unsplash.com/photo-1520072959219-c595dc870360?auto=format&fit=crop&w=600&q=80'
+            },
+            {
+                id: 8,
+                category: 'desserts',
+                name: 'Dark Chocolate Torte',
+                description: 'Decadent flourless dark chocolate cake served with espresso gelato and sea salt flakes.',
+                price: 'Rs 950',
+                tag: 'Artisanal',
+                image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=600&q=80'
+            },
+            {
+                id: 9,
+                category: 'cold',
+                name: 'Spiced Iced Mocha',
+                description: 'Single-origin espresso blended with dark chocolate ganache, cinnamon, milk, and ice.',
+                price: 'Rs 850',
+                tag: 'Cold Favorite',
+                image: 'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=600&q=80'
+            }
+        ];
+
+        // Render Menu Items
+        function renderMenu(category = 'all') {
+            const grid = document.getElementById('menu-grid');
+            grid.innerHTML = '';
+
+            const filtered = category === 'all' 
+                ? menuItems 
+                : menuItems.filter(item => item.category === category);
+
+            filtered.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'bg-cafe-cream rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-cafe-taupe/40 flex flex-col justify-between group';
+                card.innerHTML = `
+                    <div class="h-52 overflow-hidden relative">
+                        <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <span class="absolute top-3 right-3 bg-cafe-espresso/80 backdrop-blur-md text-cafe-cream text-[10px] tracking-wider uppercase px-2.5 py-1 rounded-full font-medium">
+                            ${item.tag}
+                        </span>
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow justify-between">
+                        <div>
+                            <div class="flex items-baseline justify-between gap-2 mb-2">
+                                <h3 class="text-xl font-serif text-cafe-espresso font-semibold">${item.name}</h3>
+                                <span class="text-cafe-caramel font-serif font-bold">${item.price}</span>
+                            </div>
+                            <p class="text-cafe-textMuted text-xs leading-relaxed">${item.description}</p>
+                        </div>
+                        <div class="pt-4 mt-4 border-t border-cafe-taupe/30 flex items-center justify-between">
+                            <span class="text-[11px] uppercase tracking-wider text-cafe-textMuted">& Coffee F-7/3</span>
+                            <button onclick="openReservationModal()" class="text-xs font-semibold text-cafe-espresso hover:text-cafe-caramel transition-colors flex items-center gap-1">
+                                Order <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+            lucide.createIcons();
+        }
+
+        // Filter Menu Handler
+        function filterMenu(category) {
+            document.querySelectorAll('.menu-cat-btn').forEach(btn => {
+                btn.className = 'menu-cat-btn px-6 py-2.5 rounded-full text-sm font-medium transition-all bg-cafe-taupe/30 text-cafe-espresso hover:bg-cafe-taupe/50';
+            });
+            event.target.className = 'menu-cat-btn px-6 py-2.5 rounded-full text-sm font-medium transition-all bg-cafe-espresso text-cafe-cream';
+            renderMenu(category);
+        }
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function toggleMobileMenu() {
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Header Scroll Effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) {
+                header.classList.add('glass-nav', 'shadow-sm', 'border-cafe-taupe/40');
+            } else {
+                header.classList.remove('glass-nav', 'shadow-sm', 'border-cafe-taupe/40');
+                header.classList.add('border-transparent');
+            }
+        });
+
+        // Reservation Modal Functions
+        const modal = document.getElementById('reservation-modal');
+        const formContainer = document.getElementById('reservation-form-container');
+        const successContainer = document.getElementById('reservation-success');
+
+        function openReservationModal() {
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            formContainer.classList.remove('hidden');
+            successContainer.classList.add('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeReservationModal() {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            document.body.style.overflow = 'auto';
+        }
+
+        function handleReservationSubmit(e) {
+            e.preventDefault();
+            formContainer.classList.add('hidden');
+            successContainer.classList.remove('hidden');
+        }
+
+        // Close modal on outside click
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeReservationModal();
+            }
+        });
+
+        // Initial menu render on load
+        window.onload = function() {
+            renderMenu('all');
+        };
+    </script>
+</body>
+</html>
